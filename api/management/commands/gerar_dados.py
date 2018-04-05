@@ -15,7 +15,7 @@ class Command(BaseCommand):
         parser.add_argument('qtd', nargs='+', type=int)
 
     def handle(self, *args, **options):
-        # self._create_person_fake_data(options.get('qtd')[0])
+        self._create_person_fake_data(options.get('qtd')[0])
         self._create_job_detail_fake_data(options.get('qtd')[0])
         self._create_automotive_fake_data(options.get('qtd')[0])
 
