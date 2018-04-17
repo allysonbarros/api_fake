@@ -1,0 +1,43 @@
+version: '2'
+
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false
+
+services:
+  traefik:
+    image: traefik:1.5-alpine
+    container_name: traefik
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/traefik.toml
+      - ./acme.json:/acme.json
+    labels:
+      - traefik.frontend.rule=Host:monitor.opendataprocessor.com
+      - traefik.port=8080
+      - traefik.frontend.priority=2
+    command: --web --docker --docker.domain=docker.localhost --logLevel=INFO
+
+  api:
+    build: ../../Desktop/api_fake
+    container_name: api_1k
+    command: ./docker/run_web.sh
+    expose:
+      - 8000
+    restart: always
+    labels:
+      - traefik.backend=api_1k
+      - traefik.frontend.rule=Host:api.opendataprocessor.com
+      - traefik.docker.network=proxy
+      - traefik.port=8000
+    networks:
+      - internal
+      - proxy
