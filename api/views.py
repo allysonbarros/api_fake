@@ -11,17 +11,17 @@ from api.serializers import PersonSerializer, JobDetailSerializer, AutomotiveSer
 
 
 class PersonListAPI(generics.ListAPIView):
-    queryset = Person.objects.all()
+    queryset = Person.objects.all().order_by('?')
     serializer_class = PersonSerializer
 
 
 class JobDetailListAPI(generics.ListAPIView):
-    queryset = JobDetail.objects.all()
+    queryset = JobDetail.objects.all().order_by('?')
     serializer_class = JobDetailSerializer
 
 
 class AutomotiveListAPI(generics.ListAPIView):
-    queryset = Automotive.objects.all()
+    queryset = Automotive.objects.all().order_by('?')
     serializer_class = AutomotiveSerializer
 
 
