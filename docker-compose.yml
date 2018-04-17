@@ -27,14 +27,14 @@ services:
     command: --web --docker --docker.domain=docker.localhost --logLevel=INFO
 
   api:
-    build: ../../Desktop/api_fake
-    container_name: api_1k
+    build: .
+    container_name: api_fake
     command: ./docker/run_web.sh
     expose:
       - 8000
     restart: always
     labels:
-      - traefik.backend=api_1k
+      - traefik.backend=api_fake
       - traefik.frontend.rule=Host:api.opendataprocessor.com
       - traefik.docker.network=proxy
       - traefik.port=8000
