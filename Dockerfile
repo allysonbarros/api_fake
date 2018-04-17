@@ -9,4 +9,4 @@ ADD requirements.txt ${APP_ROOT}
 RUN pip install -r requirements.txt
 
 RUN adduser --disabled-password --gecos '' ${APP_USER}
-ADD ../../Desktop/api_fake ${APP_ROOT}
+ADD . ${APP_ROOT}
