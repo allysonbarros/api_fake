@@ -14,7 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.contrib.staticfiles import views
 
 urlpatterns = [
     url(r'^api/', include('api.urls'))
+]
+
+urlpatterns += [
+    url(r'^static/(?P<path>.*)$', views.serve),
 ]
