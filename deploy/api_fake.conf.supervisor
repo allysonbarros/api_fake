@@ -2,5 +2,5 @@
 directory = /home/vagrant/api_fake/
 user = www-data
 command = /home/vagrant/api_fake/deploy/gunicorn_start.sh
-stdout_logfile = /var/log/api_fake/supervisor_out.log
-stderr_logfile = /var/log/api_fake/supervisor_err.log
+stdout_logfile = /home/vagrant/api_fake/deploy/logs/supervisor_out.log
+stderr_logfile = /home/vagrant/api_fake/deploy/logs/supervisor_err.log
